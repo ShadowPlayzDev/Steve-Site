@@ -1,58 +1,50 @@
-const mainHeader = document.getElementById('main-header');
-const homeSection = document.getElementById('home');
+document.addEventListener('DOMContentLoaded', () => {
+    const mainHeader = document.getElementById('main-header');
+    const homeSection = document.getElementById('home');
 
-if (mainHeader && homeSection) {
-    function updateHeaderStyle() {
-        const scrollThreshold = homeSection.offsetHeight - mainHeader.offsetHeight - 50;
+    if (mainHeader && homeSection) {
+        function updateHeaderStyle() {
+            const scrollThreshold = 100;
 
-        if (window.scrollY > scrollThreshold) {
-            mainHeader.classList.remove('bg-transparent', 'shadow-none');
-            mainHeader.classList.add('bg-gray-800', 'shadow-lg');
-        } else {
-            mainHeader.classList.remove('bg-gray-800', 'shadow-lg');
-            mainHeader.classList.add('bg-transparent', 'shadow-none');
+            if (window.scrollY > scrollThreshold) {
+                mainHeader.classList.remove('bg-transparent', 'shadow-none');
+                mainHeader.classList.add('bg-gray-800', 'shadow-lg');
+            } else {
+                mainHeader.classList.remove('bg-gray-800', 'shadow-lg');
+                mainHeader.classList.add('bg-transparent', 'shadow-none');
+            }
         }
+        updateHeaderStyle();
+        window.addEventListener('scroll', updateHeaderStyle);
     }
 
-    updateHeaderStyle();
-    window.addEventListener('scroll', updateHeaderStyle);
-}
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
 
-const mobileMenuButton = document.getElementById('mobile-menu-button');
-const mobileMenu = document.getElementById('mobile-menu');
-
-if (mobileMenuButton && mobileMenu) {
-    mobileMenuButton.addEventListener('click', () => {
-        mobileMenu.classList.toggle('hidden');
-    });
-
-    mobileMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            if (!mobileMenu.classList.contains('hidden')) {
-                mobileMenu.classList.add('hidden');
-            }
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
         });
-    });
-}
 
-const currentYearSpan = document.getElementById('current-year');
-if (currentYearSpan) {
-    currentYearSpan.textContent = new Date().getFullYear();
-}
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    }
 
----
-
-### Dynamic Content Loading
-
----
+    const currentYearSpan = document.getElementById('current-year');
+    if (currentYearSpan) {
+        currentYearSpan.textContent = new Date().getFullYear();
+    }
+});
 
 import projects from './projects.js';
-
 const projectsContainer = document.getElementById('projects-container');
-
 if (projectsContainer) {
     projectsContainer.innerHTML = '';
-
     if (Array.isArray(projects)) {
         projects.forEach(project => {
             const projectCard = `
@@ -85,12 +77,9 @@ if (projectsContainer) {
 }
 
 import testimonials from './testimonials.js';
-
 const testimonialsContainer = document.getElementById('testimonials-container');
-
 if (testimonialsContainer) {
     testimonialsContainer.innerHTML = '';
-
     if (Array.isArray(testimonials)) {
         testimonials.forEach(testimonial => {
             const testimonialCard = `
