@@ -1,33 +1,24 @@
-// --- Header Style Toggle (Transparent on Home, Solid on Scroll) ---
 const mainHeader = document.getElementById('main-header');
 const homeSection = document.getElementById('home');
 
 if (mainHeader && homeSection) {
     function updateHeaderStyle() {
-        // Adjust this threshold as needed. It's usually a bit before the end of the home section
-        // to make the header change smoothly as the user transitions out of the hero.
         const scrollThreshold = homeSection.offsetHeight - mainHeader.offsetHeight - 50; 
 
         if (window.scrollY > scrollThreshold) {
-            // Scrolled past the home section: make header solid and add shadow
             mainHeader.classList.remove('bg-transparent', 'shadow-none');
             mainHeader.classList.add('bg-gray-800', 'shadow-lg');
         } else {
-            // Still within the home section or at the very top: keep header transparent
             mainHeader.classList.remove('bg-gray-800', 'shadow-lg');
             mainHeader.classList.add('bg-transparent', 'shadow-none');
         }
     }
 
-    // Initial call to set header style based on initial scroll position
     updateHeaderStyle();
 
-    // Add scroll event listener
     window.addEventListener('scroll', updateHeaderStyle);
 }
 
-
-// --- Mobile Menu Functionality ---
 const mobileMenuButton = document.getElementById('mobile-menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 
@@ -36,10 +27,8 @@ if (mobileMenuButton && mobileMenu) {
         mobileMenu.classList.toggle('hidden');
     });
 
-    // Close mobile menu when a link is clicked (for smoother navigation)
     mobileMenu.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
-            // Only hide if it's currently visible
             if (!mobileMenu.classList.contains('hidden')) {
                 mobileMenu.classList.add('hidden');
             }
@@ -47,19 +36,15 @@ if (mobileMenuButton && mobileMenu) {
     });
 }
 
-
-// --- Dynamic Current Year in Footer ---
 const currentYearSpan = document.getElementById('current-year');
 if (currentYearSpan) {
     currentYearSpan.textContent = new Date().getFullYear();
 }
 
-
-// --- Projects Section Data Loading ---
 const projectsContainer = document.getElementById('projects-container');
 
 if (projectsContainer) {
-    fetch('projects.json') // Assuming projects.json is in the public/ root directory
+    fetch('projects.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -67,7 +52,7 @@ if (projectsContainer) {
             return response.json();
         })
         .then(projects => {
-            projectsContainer.innerHTML = ''; // Clear "Loading projects..." message
+            projectsContainer.innerHTML = '';
             projects.forEach(project => {
                 const projectCard = `
                     <div class="bg-darkPrimary p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105 flex flex-col justify-between">
@@ -99,12 +84,10 @@ if (projectsContainer) {
         });
 }
 
-
-// --- Testimonials Section Data Loading ---
 const testimonialsContainer = document.getElementById('testimonials-container');
 
 if (testimonialsContainer) {
-    fetch('testimonials.json') // Assuming testimonials.json is in the public/ root directory
+    fetch('testimonials.json')
         .then(response => {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
@@ -112,7 +95,7 @@ if (testimonialsContainer) {
             return response.json();
         })
         .then(testimonials => {
-            testimonialsContainer.innerHTML = ''; // Clear "Loading testimonials..." message
+            testimonialsContainer.innerHTML = '';
             testimonials.forEach(testimonial => {
                 const testimonialCard = `
                     <div class="bg-darkPrimary p-6 rounded-lg shadow-md relative">
