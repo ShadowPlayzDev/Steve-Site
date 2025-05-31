@@ -1,5 +1,5 @@
 window.contactConfig = {
-    theme: "app", // 'light', 'dark', or 'app'
+    theme: "dark", // 'light', 'dark', or 'app'
     title: "Get in Touch",
     message: "I'm always open to a new conversation. Find me anywhere below. I will get to your message as soon as I can.",
     email: "shadowplayzdev@gmail.com",
