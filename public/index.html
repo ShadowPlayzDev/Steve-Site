@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steve's Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBackground: '#1a202c',
+                        darkPrimary: '#2d3748',
+                        darkText: '#e2e8f0',
+                        darkAccent: '#63b3ed',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans antialiased">
+
+    <header id="main-header" class="fixed top-0 left-0 w-full bg-gray-800 text-gray-100 py-6 px-4 md:px-8 shadow-lg z-50 transition-all duration-500 ease-in-out header-hidden">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-darkAccent hover:text-blue-400 transition duration-300">Steve.dev</a>
+            <ul class="hidden md:flex space-x-6">
+                <li><a href="#about" class="hover:text-darkAccent transition duration-300">About</a></li>
+                <li><a href="#skills" class="hover:text-darkAccent transition duration-300">Skills</a></li>
+                <li><a href="#contact" class="hover:text-darkAccent transition duration-300">Contact</a></li>
+            </ul>
+            <button id="mobile-menu-button" class="md:hidden text-gray-100 focus:outline-none">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 pt-2 pb-4 space-y-2 mt-4">
+            <a href="#about" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">About</a>
+            <a href="#skills" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Skills</a>
+            <a href="#contact" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Contact</a>
+        </div>
+    </header>
+
+    <section id="home" class="min-h-screen flex items-center justify-center text-center py-16 px-4 bg-gradient-to-br from-gray-900 to-darkPrimary">
+        <div class="max-w-4xl mx-auto">
+            <img src="./assets/profile.jpg" alt="Steve's Profile Picture" class="w-48 h-48 rounded-full mx-auto mb-8 object-cover border-4 border-darkAccent shadow-xl">
+            <h1 class="text-6xl font-extrabold mb-4 leading-tight text-white">Hi, I'm <span class="text-darkAccent">Steve</span></h1>
+            <p class="text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">A passionate web developer building modern, responsive, and user-friendly applications.</p>
+            <a href="#about" class="inline-block bg-darkAccent hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-full text-xl shadow-lg transform hover:scale-105 transition duration-300">Learn More About Me</a>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-4 bg-gray-800 text-gray-200">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-5xl font-extrabold text-center mb-12 text-white">About Me</h2>
+            <div class="flex flex-col md:flex-row items-center md:space-x-12">
+                <div class="md:w-1/2 mb-8 md:mb-0">
+                    <img src="https://via.placeholder.com/600x400/2d3748/e2e8f0?text=About+Image" alt="About Steve" class="rounded-lg shadow-xl transform hover:scale-105 transition duration-300">
+                </div>
+                <div class="md:w-1/2 text-lg leading-relaxed">
+                    <p class="mb-6">
+                        Hello! My name is Steve, and I specialize in creating robust and dynamic web experiences. With a strong foundation in <strong class="text-darkAccent">HTML</strong>, <strong class="text-darkAccent">CSS</strong>, and <strong class="text-darkAccent">JavaScript</strong>, I love bringing ideas to life on the web.
+                    </p>
+                    <p class="mb-6">
+                        I'm particularly enthusiastic about using modern frameworks like <strong class="text-darkAccent">Tailwind CSS</strong> to build beautiful and highly customizable interfaces efficiently. My goal is always to deliver clean, efficient, and maintainable code that provides an excellent user experience.
+                    </p>
+                    <p>
+                        When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying the great outdoors. I'm always eager to learn and take on new challenges.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-20 px-4 bg-gray-900 text-gray-200">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-5xl font-extrabold text-center mb-12 text-white">My Skills</h2>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-16 h-16 mx-auto mb-4">
+                    <p class="text-xl font-semibold text-gray-100">HTML5</p>
+                </a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-16 h-16 mx-auto mb-4">
+                    <p class="text-xl font-semibold text-gray-100">CSS3</p>
+                </a>
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-16 h-16 mx-auto mb-4">
+                    <p class="text-xl font-semibold text-gray-100">JavaScript</p>
+                </a>
+                <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg" alt="Tailwind CSS" class="w-16 h-16 mx-auto mb-4">
+                    <p class="text-xl font-semibold text-gray-100">Tailwind CSS</p>
+                </a>
+                <a href="https://git-scm.com/doc" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" class="w-16 h-16 mx-auto mb-4">
+                    <p class="text-xl font-semibold text-gray-100">Git</p>
+                </a>
+                <a href="https://code.visualstudio.com/docs" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="w-16 h-16 mx-auto mb-4">
+                    <p class="text-xl font-semibold text-gray-100">VS Code</p>
+                </a>
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full p-1">
+                    <p class="text-xl font-semibold text-gray-100">GitHub</p>
+                </a>
+                <a href="https://www.gnu.org/software/bash/manual/bash.html" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash" class="w-16 h-16 mx-auto mb-4">
+                    <p class="text-xl font-semibold text-gray-100">Bash</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-4 bg-gray-800 text-gray-200">
+        <div class="container mx-auto max-w-xl text-center">
+            <h2 class="text-5xl font-extrabold mb-8 text-white">Get in Touch</h2>
+            <p class="text-lg mb-10 leading-relaxed">
+                I'm always open to new opportunities and collaborations. Feel free to reach out if you have any questions or just want to connect!
+            </p>
+            <div class="space-y-6">
+                <a href="mailto:steve@example.com" class="inline-flex items-center bg-darkAccent hover:bg-blue-600 text-white font-bold py-4 px-8 rounded-full text-xl shadow-lg transform hover:scale-105 transition duration-300">
+                    <svg class="w-7 h-7 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-18 4v4a2 2 0 002 2h14a2 2 0 002-2v-4M3 8l7.89 5.26a2 2 0 002.22 0L21 8"></path></svg>
+                    steve@example.com
+                </a>
+                <a href="https://linkedin.com/in/steve" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-darkAccent hover:text-blue-400 font-semibold text-lg hover:underline transition duration-300 mx-4">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" alt="LinkedIn" class="w-7 h-7 mr-2">
+                    LinkedIn
+                </a>
+                <a href="https://github.com/steve" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-darkAccent hover:text-blue-400 font-semibold text-lg hover:underline transition duration-300 mx-4">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-7 h-7 mr-2 bg-gray-100 rounded-full p-1">
+                    GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-8 px-4 text-center text-sm">
+        <div class="container mx-auto">
+            <p>&copy; <span id="current-year"></span> Steve. All rights reserved.</p>
+            <p class="mt-2">Built with ❤️ and <span class="text-darkAccent">Tailwind CSS</span>.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body
+</html>
