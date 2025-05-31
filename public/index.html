@@ -28,13 +28,15 @@
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans antialiased">
 
-    <header id="main-header" class="fixed top-0 left-0 w-full bg-gray-800 text-gray-100 py-6 px-4 md:px-8 shadow-lg z-50 transition-all duration-500 ease-in-out header-hidden">
+    <header id="main-header" class="fixed top-0 left-0 w-full text-gray-100 py-6 px-4 md:px-8 z-50 transition-all duration-500 ease-in-out bg-transparent shadow-none">
         <nav class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-3xl font-bold text-darkAccent hover:text-blue-400 transition duration-300">Steve.is-a.dev</a>
             <ul class="hidden md:flex space-x-6">
                 <li><a href="#about" class="hover:text-darkAccent transition duration-300">About</a></li>
                 <li><a href="#skills" class="hover:text-darkAccent transition duration-300">Skills</a></li>
-                <li><a href="#commissions" class="hover:text-darkAccent transition duration-300">Comissions</a></li>
+                <li><a href="#projects" class="hover:text-darkAccent transition duration-300">Projects</a></li>
+                <li><a href="#commissions" class="hover:text-darkAccent transition duration-300">Commissions</a></li>
+                <li><a href="#testimonials" class="hover:text-darkAccent transition duration-300">Testimonials</a></li>
                 <li><a href="#contact" class="hover:text-darkAccent transition duration-300">Contact</a></li>
             </ul>
             <button id="mobile-menu-button" class="md:hidden text-gray-100 focus:outline-none">
@@ -45,8 +47,10 @@
         </nav>
         <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 pt-2 pb-4 space-y-2 mt-4">
             <a href="#about" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">About</a>
-            <a href="#comissions" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Comissions</a>
             <a href="#skills" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Skills</a>
+            <a href="#projects" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Projects</a>
+            <a href="#commissions" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Commissions</a>
+            <a href="#testimonials" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Testimonials</a>
             <a href="#contact" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Contact</a>
         </div>
     </header>
@@ -60,24 +64,22 @@
         </div>
     </section>
 
-<section id="about" class="py-20 px-4 bg-gray-800 text-gray-200">
-    <div class="container mx-auto max-w-5xl">
-        <h2 class="text-5xl font-extrabold text-center mb-12 text-white">About Me</h2>
-        
-        <div class="text-lg leading-relaxed">
-            <p class="mb-6">
-                Hello! My name is Steve, and I specialize in creating robust and dynamic web experiences. With a strong foundation in <strong class="text-darkAccent">HTML</strong>, <strong class="text-darkAccent">CSS</strong>, and <strong class="text-darkAccent">JavaScript</strong>, I love bringing ideas to life on the web.
-            </p>
-            <p class="mb-6">
-                I'm particularly enthusiastic about using modern frameworks like <strong class="text-darkAccent">Tailwind CSS</strong> to build beautiful and highly customizable interfaces efficiently. My goal is always to deliver clean, efficient, and maintainable code that provides an excellent user experience.
-            </p>
-            <p>
-                When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying the great outdoors. I'm always eager to learn and take on new challenges.
-            </p>
+    <section id="about" class="py-20 px-4 bg-gray-800 text-gray-200">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-5xl font-extrabold text-center mb-12 text-white">About Me</h2>
+            <div class="text-lg leading-relaxed">
+                <p class="mb-6">
+                    Hello! My name is Steve, and I specialize in creating robust and dynamic web experiences. With a strong foundation in <span class="font-bold text-darkAccent">HTML</span>, <span class="font-bold text-darkAccent">CSS</span>, and <span class="font-bold text-darkAccent">JavaScript</span>, I love bringing ideas to life on the web.
+                </p>
+                <p class="mb-6">
+                    I'm particularly enthusiastic about using modern frameworks like <span class="font-bold text-darkAccent">Tailwind CSS</span> to build beautiful and highly customizable interfaces efficiently. My goal is always to deliver clean, efficient, and maintainable code that provides an excellent user experience.
+                </p>
+                <p>
+                    When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying the great outdoors. I'm always eager to learn and take on new challenges.
+                </p>
+            </div>
         </div>
-
-    </div>
-</section>
+    </section>
 
     <section id="skills" class="py-20 px-4 bg-gray-900 text-gray-200">
         <div class="container mx-auto max-w-6xl">
@@ -115,66 +117,85 @@
         </div>
     </section>
 
-<section id="commissions" class="py-20 px-4 bg-gray-800 text-gray-200">
-    <div class="container mx-auto max-w-6xl">
-        <h2 class="text-5xl font-extrabold text-center mb-12 text-white">Commissions</h2>
-        <div class="text-lg text-center mb-10 leading-relaxed">
-            Looking for a custom digital solution? I offer commissions for bespoke websites and powerful desktop applications. Here are my primary offerings:
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="bg-darkPrimary p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
-                <h3 class="text-3xl font-bold text-darkAccent mb-4">Website Commissions</h3>
-                <div class="mb-4 text-lg">
-                    Need a stunning online presence? I can help you build custom websites from scratch, ranging from dynamic portfolio sites to robust e-commerce platforms. My focus is on responsive design, modern UI/UX, and clean, maintainable code using <span class="font-bold text-darkAccent">HTML</span>, <span class="font-bold text-darkAccent">CSS</span>, <span class="font-bold text-darkAccent">JavaScript</span>, and <span class="font-bold text-darkAccent">Tailwind CSS</span>.
+    <section id="projects" class="py-20 px-4 bg-gray-900 text-gray-200">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-5xl font-extrabold text-center mb-12 text-white">My Projects</h2>
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-darkPrimary p-8 rounded-lg shadow-md text-center">
+                    <p class="text-lg text-gray-300">Loading projects...</p>
                 </div>
-                <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
-                    <li>Custom Design & Development</li>
-                    <li>Responsive & Mobile-Friendly</li>
-                    <li>Performance Optimization</li>
-                    <li>Modern Front-End Technologies</li>
-                </ul>
-                <a href="#contact" class="inline-block bg-darkAccent hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md transition duration-300">
-                    Inquire About a Website
-                </a>
             </div>
-
-            <div class="bg-darkPrimary p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
-                <h3 class="text-3xl font-bold text-darkAccent mb-4">Electron Desktop App Commissions</h3>
-                <div class="mb-4 text-lg">
-                    Transform your web ideas into cross-platform desktop applications! Using <span class="font-bold text-darkAccent">Electron</span>, I can develop powerful and user-friendly desktop apps that run seamlessly on Windows, macOS, and Linux, leveraging web technologies for advanced design and fast deployments.
+        </div>
+    </section>
+    <section id="commissions" class="py-20 px-4 bg-gray-800 text-gray-200">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-5xl font-extrabold text-center mb-12 text-white">Commissions</h2>
+            <div class="text-lg text-center mb-10 leading-relaxed">
+                Looking for a custom digital solution? I offer commissions for bespoke websites and powerful desktop applications. Here are my primary offerings:
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-darkPrimary p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <h3 class="text-3xl font-bold text-darkAccent mb-4">Website Commissions</h3>
+                    <div class="mb-4 text-lg">
+                        Need a stunning online presence? I can help you build custom websites from scratch, ranging from dynamic portfolio sites to robust e-commerce platforms. My focus is on responsive design, modern UI/UX, and clean, maintainable code using <span class="font-bold text-darkAccent">HTML</span>, <span class="font-bold text-darkAccent">CSS</span>, <span class="font-bold text-darkAccent">JavaScript</span>, and <span class="font-bold text-darkAccent">Tailwind CSS</span>.
+                    </div>
+                    <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+                        <li>Custom Design & Development</li>
+                        <li>Responsive & Mobile-Friendly</li>
+                        <li>Performance Optimization</li>
+                        <li>Modern Front-End Technologies</li>
+                    </ul>
+                    <a href="#contact" class="inline-block bg-darkAccent hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md transition duration-300">
+                        Inquire About a Website
+                    </a>
                 </div>
-                <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
-                    <li>Cross-Platform Compatibility</li>
-                    <li>Native OS Integration</li>
-                    <li>Modern UI with Web Tech</li>
-                    <li>Stand-alone Applications</li>
+
+                <div class="bg-darkPrimary p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                    <h3 class="text-3xl font-bold text-darkAccent mb-4">Electron Desktop App Commissions</h3>
+                    <div class="mb-4 text-lg">
+                        Transform your web ideas into cross-platform desktop applications! Using <span class="font-bold text-darkAccent">Electron</span>, I can develop powerful and user-friendly desktop apps that run seamlessly on Windows, macOS, and Linux, leveraging web technologies for advanced design and fast deployments.
+                    </div>
+                    <ul class="list-disc list-inside text-gray-300 mb-6 space-y-2">
+                        <li>Cross-Platform Compatibility</li>
+                        <li>Native OS Integration</li>
+                        <li>Modern UI with Web Tech</li>
+                        <li>Stand-alone Applications</li>
+                    </ul>
+                    <a href="#contact" class="inline-block bg-darkAccent hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md transition duration-300">
+                        Inquire About a Desktop App
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <h3 class="text-6xl font-extrabold text-darkAccent mb-6">FREE</h3>
+                <div class="text-xl leading-relaxed mb-4">
+                    I do not charge you for the <span class="font-bold">development work</span> on the websites or apps themselves. However, you may need to pay for certain third-party services:
+                </div>
+                <ul class="list-disc list-inside text-lg text-gray-300 space-y-3 max-w-2xl mx-auto text-left">
+                    <li>
+                        <span class="font-bold text-darkAccent">Vercel:</span> If you want to deploy a business website that is not non-profit, you would need to pay for plans other then Hobby
+                    </li>
+                    <li>
+                        <span class="font-bold text-darkAccent">Domain:</span> If you want a memorable address like <span class="font-bold text-darkAccent">mywebsite.com</span> instead of a default <span class="font-bold text-darkAccent">mywebsite.vercel.app</span>, you would need to purchase a domain name. Prices vary greatly depending on the domain registrar and the specific domain chosen.
+                    </li>
                 </ul>
-                <a href="#contact" class="inline-block bg-darkAccent hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full text-lg shadow-md transition duration-300">
-                    Inquire About a Desktop App
-                </a>
             </div>
         </div>
+    </section>
 
-        <div class="mt-16 text-center">
-            <h3 class="text-6xl font-extrabold text-darkAccent mb-6">FREE</h3>
-            <div class="text-xl leading-relaxed mb-4">
-                I do not charge you for the <span class="font-bold">development work</span> on the websites or apps themselves. However, you may need to pay for certain third-party services:
+    <section id="testimonials" class="py-20 px-4 bg-gray-900 text-gray-200">
+        <div class="container mx-auto max-w-5xl">
+            <h2 class="text-5xl font-extrabold text-center mb-12 text-white">What Clients Say</h2>
+            <div id="testimonials-container" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-darkPrimary p-8 rounded-lg shadow-md text-center">
+                    <p class="text-lg text-gray-300">Loading testimonials...</p>
+                </div>
             </div>
-            <ul class="list-disc list-inside text-lg text-gray-300 space-y-3 max-w-2xl mx-auto text-left">
-                <li>
-                    <span class="font-bold text-darkAccent">Vercel:</span> If you want to deploy a business website that is not non-profit, you would need to pay for plans other then Hobby
-                </li>
-                <li>
-                    <span class="font-bold text-darkAccent">Domain:</span> If you want a memorable address like <span class="font-bold text-darkAccent">mywebsite.com</span> instead of a default <span class="font-bold text-darkAccent">mywebsite.vercel.app</span>, you would need to purchase a domain name. Prices vary greatly depending on the domain registrar and the specific domain chosen.
-                </li>
-            </ul>
         </div>
-        
-    </div>
-</section>
-
-<section id="contact" class="py-20 px-4 bg-gray-800 text-gray-200">
-        <div class="container mx-auto max-w-xl text-center">
+    </section>
+    <section id="contact" class="py-20 px-4 bg-gray-800 text-gray-200">
+        <div class="container mx-auto max-xl text-center">
             <h2 class="text-5xl font-extrabold mb-8 text-white">Get in Touch</h2>
             <p class="text-lg mb-10 leading-relaxed">
                 I'm always open to new opportunities and collaborations. Feel free to reach out if you have any questions or just want to connect!
