@@ -75,27 +75,3 @@ if (projectsContainer) {
         projectsContainer.innerHTML = '<p class="text-center text-red-400">Failed to load projects: Data format error.</p>';
     }
 }
-
-import testimonials from './testimonials.js';
-const testimonialsContainer = document.getElementById('testimonials-container');
-if (testimonialsContainer) {
-    testimonialsContainer.innerHTML = '';
-    if (Array.isArray(testimonials)) {
-        testimonials.forEach(testimonial => {
-            const testimonialCard = `
-                <div class="bg-darkPrimary p-6 rounded-lg shadow-md relative">
-                    <svg class="absolute top-4 left-4 w-10 h-10 text-darkAccent opacity-20" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M7 11v2.5a3.5 3.5 0 01-3.5 3.5c-1.61 0-2.5-1.09-2.5-1.92V11c0-.55-.45-1-1-1s-1 .45-1 1v4c0 2.21 1.79 4 4 4s4-1.79 4-4V11c0-.55-.45-1-1-1s-1 .45-1 1zm12 0v2.5a3.5 3.5 0 01-3.5 3.5c-1.61 0-2.5-1.09-2.5-1.92V11c0-.55-.45-1-1-1s-1 .45-1 1v4c0 2.21 1.79 4 4 4s4-1.79 4-4V11c0-.55-.45-1-1-1s-1 .45-1 1z"/>
-                    </svg>
-                    <p class="text-xl italic mb-4 relative z-10 pl-6 pr-4">"${testimonial.quote}"</p>
-                    <p class="text-lg font-semibold text-darkAccent">- ${testimonial.author}</p>
-                    ${testimonial.company ? `<p class="text-md text-gray-400">${testimonial.company}</p>` : ''}
-                </div>
-            `;
-            testimonialsContainer.insertAdjacentHTML('beforeend', testimonialCard);
-        });
-    } else {
-        console.error('Error: testimonials data is not an array.', testimonials);
-        testimonialsContainer.innerHTML = '<p class="text-center text-red-400">Failed to load testimonials: Data format error.</p>';
-    }
-}
