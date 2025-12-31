@@ -50,10 +50,7 @@ export default async function handler(req, res) {
     );
 
     if (response.status === 204 || response.status > 400) {
-      return res.status(200).json({ 
-        isPlaying: false, 
-        updateDate 
-      });
+      return res.status(200).json({ isPlaying: false, updateDate });
     }
 
     const song = await response.json();
