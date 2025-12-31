@@ -52,7 +52,7 @@ async function loadSpotify() {
     if (!container) return;
 
     try {
-        const response = await fetch('/api/spotifyMusic', { method: 'POST' });
+        const response = await fetch('/api/SpotifyMusic', { method: 'POST' });
         if (!response.ok) throw new Error('Failed to fetch music');
         
         const data = await response.json();
