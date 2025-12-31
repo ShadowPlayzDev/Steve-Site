@@ -53,6 +53,7 @@ async function loadSpotify() {
         const data = await response.json();
         renderSpotifyCard(data); 
     } catch (error) {
+        console.error("Spotify Load Error:", error);
         container.innerHTML = `<p class="text-gray-400">Not playing anything right now.</p>`;
     }
 }
