@@ -2,14 +2,13 @@ const underConstruction = true;
 
 document.addEventListener('DOMContentLoaded', () => {
     const mainHeader = document.getElementById('main-header');
-    const homeSection = document.getElementById('home');
     const constructionBanner = document.getElementById('construction-banner');
 
     if (underConstruction && constructionBanner) {
         constructionBanner.classList.remove('hidden');
     }
 
-    if (mainHeader && homeSection) {
+    if (mainHeader) {
         function updateHeaderStyle() {
             const scrollThreshold = 100;
             if (window.scrollY > scrollThreshold) {
@@ -34,9 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         mobileMenu.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
-                if (!mobileMenu.classList.contains('hidden')) {
-                    mobileMenu.classList.add('hidden');
-                }
+                mobileMenu.classList.add('hidden');
             });
         });
     }
@@ -46,53 +43,24 @@ document.addEventListener('DOMContentLoaded', () => {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 
-    setupLazyLoading();
+    loadSpotify();
+    loadProjects();
 });
-
-function setupLazyLoading() {
-    const options = {
-        root: null,
-        rootMargin: '0px 0px 200px 0px',
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                if (entry.target.id === 'music') {
-                    loadSpotify();
-                } else if (entry.target.id === 'projects') {
-                    loadProjects();
-                }
-                entry.target.classList.add('section-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, options);
-
-    document.querySelectorAll('.section-fade-in').forEach(section => {
-        observer.observe(section);
-    });
-}
 
 async function loadSpotify() {
     const container = document.getElementById('spotify-container');
-    const fallbackUrl = "https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM3M?utm_source=generator&theme=0";
-    
+    if (!container) return;
+
     try {
-        const response = await fetch('/api/SpotifyMusic');
-        if (!response.ok) throw new Error('Network response error');
+        const response = await fetch('/api/spotifyMusic', { method: 'POST' });
+        if (!response.ok) throw new Error('Failed to fetch music');
         
         const data = await response.json();
-        const playlistUrl = data.url || fallbackUrl;
+        renderSpotifyCard(data); 
         
-        container.innerHTML = `
-            <iframe style="border-radius:12px" src="${playlistUrl}" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        `;
     } catch (error) {
-        container.innerHTML = `
-            <iframe style="border-radius:12px" src="${fallbackUrl}" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-        `;
+        console.error("Spotify Load Error:", error);
+        container.innerHTML = `<p class="text-gray-400">Not playing anything right now.</p>`;
     }
 }
 
@@ -112,7 +80,7 @@ async function loadProjects() {
                             ${project.image ? `<img src="${project.image}" alt="${project.title}" class="w-full h-48 object-cover rounded-md mb-6 border border-gray-700">` : ''}
                             <h3 class="text-3xl font-bold text-darkAccent mb-3">${project.title}</h3>
                             <p class="text-lg text-gray-300 mb-4">${project.description}</p>
-                            ${project.technologies && project.technologies.length > 0 ? `
+                            ${project.technologies?.length ? `
                                 <div class="mb-4">
                                     <span class="font-semibold text-gray-400">Technologies:</span>
                                     <div class="flex flex-wrap gap-2 mt-2">
