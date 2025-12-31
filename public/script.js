@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (mainHeader) {
-        function updateHeaderStyle() {
+        const updateHeaderStyle = () => {
             const scrollThreshold = 100;
             if (window.scrollY > scrollThreshold) {
                 mainHeader.classList.remove('bg-transparent', 'shadow-none', 'py-6');
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 mainHeader.classList.remove('bg-gray-800/90', 'backdrop-blur-md', 'shadow-lg', 'py-4');
                 mainHeader.classList.add('bg-transparent', 'shadow-none', 'py-6');
             }
-        }
+        };
         updateHeaderStyle();
         window.addEventListener('scroll', updateHeaderStyle);
     }
