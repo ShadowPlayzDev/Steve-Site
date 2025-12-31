@@ -4,7 +4,7 @@ const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
 
 const basic = btoa(`${client_id}:${client_secret}`);
 const NOW_PLAYING_ENDPOINT = `https://api.spotify.com/v1/me/player/currently-playing`;
-const TOKEN_ENDPOINT = `https://api.spotify.com/v1/token`;
+const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 const getAccessToken = async () => {
   const response = await fetch(TOKEN_ENDPOINT, {
@@ -44,17 +44,22 @@ export default async function handler(req, res) {
 
     const updateDate = Math.floor(Date.now() / 1000);
 
+    res.setHeader(
+      'Cache-Control',
+      'public, s-maxage=120, stale-while-revalidate=60'
+    );
+
     if (response.status === 204 || response.status > 400) {
       return res.status(200).json({ 
-        isPlaying: false,
-        updateDate
+        isPlaying: false, 
+        updateDate 
       });
     }
 
     const song = await response.json();
-    
+
     if (!song.item) {
-        return res.status(200).json({ isPlaying: false, updateDate });
+      return res.status(200).json({ isPlaying: false, updateDate });
     }
 
     return res.status(200).json({
