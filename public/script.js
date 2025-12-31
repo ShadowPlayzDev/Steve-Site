@@ -42,6 +42,16 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProjects();
 });
 
+function renderSpotifyCard(data) {
+    const container = document.getElementById('spotify-container');
+    if (!container) return;
+
+    if (!data.isPlaying) {
+        container.innerHTML = `<p class="text-xl font-semibold text-gray-400">Not playing anything right now</p>`;
+        if (window.spotifyInterval) clearInterval(window.spotifyInterval);
+        return;
+    }
+
 async function loadSpotify() {
     const container = document.getElementById('spotify-container');
     if (!container) return;
@@ -57,16 +67,6 @@ async function loadSpotify() {
         container.innerHTML = `<p class="text-gray-400">Not playing anything right now.</p>`;
     }
 }
-
-function renderSpotifyCard(data) {
-    const container = document.getElementById('spotify-container');
-    if (!container) return;
-
-    if (!data.isPlaying) {
-        container.innerHTML = `<p class="text-xl font-semibold text-gray-400">Not playing anything right now</p>`;
-        if (window.spotifyInterval) clearInterval(window.spotifyInterval);
-        return;
-    }
 
     const progressPercent = (data.progressMs / data.durationMs) * 100;
 
