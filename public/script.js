@@ -44,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loadSpotify();
+    setInterval(loadSpotify, 30000);
     loadProjects();
 });
 
@@ -59,9 +60,74 @@ async function loadSpotify() {
         renderSpotifyCard(data); 
         
     } catch (error) {
-        console.error("Spotify Load Error:", error);
         container.innerHTML = `<p class="text-gray-400">Not playing anything right now.</p>`;
     }
+}
+
+function renderSpotifyCard(data) {
+    const container = document.getElementById('spotify-container');
+    if (!container) return;
+
+    if (!data.isPlaying) {
+        container.innerHTML = `
+            <div class="flex flex-col items-center justify-center p-8 text-center">
+                <p class="text-xl font-semibold text-gray-400">Not playing anything right now</p>
+            </div>`;
+        return;
+    }
+
+    const progressPercent = (data.progressMs / data.durationMs) * 100;
+
+    container.innerHTML = `
+        <div class="w-full max-w-md mx-auto flex flex-col md:flex-row items-center gap-6 p-2 text-left">
+            <div class="relative shrink-0">
+                <img src="${data.cover}" alt="Album Art" class="w-32 h-32 md:w-40 md:h-40 rounded-lg shadow-2xl border border-gray-700 object-cover">
+                <div class="absolute -top-2 -right-2 bg-spotifyGreen p-1.5 rounded-full shadow-lg border-2 border-gray-900 text-white">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                </div>
+            </div>
+            
+            <div class="flex-1 w-full overflow-hidden text-center md:text-left">
+                <div class="mb-4">
+                    <a href="${data.url}" target="_blank" rel="noopener noreferrer" class="text-2xl font-bold text-white hover:text-spotifyGreen transition-colors truncate block">
+                        ${data.title}
+                    </a>
+                    <p class="text-darkAccent font-medium text-lg truncate">${data.artist}</p>
+                </div>
+
+                <div class="space-y-2">
+                    <div class="w-full bg-gray-700 rounded-full h-1.5 overflow-hidden">
+                        <div id="spotify-progress-bar" class="bg-spotifyGreen h-full transition-all duration-1000 ease-linear" style="width: ${progressPercent}%"></div>
+                    </div>
+                    <div class="flex justify-between text-xs font-mono text-gray-500">
+                        <span id="spotify-current-time">${data.position}</span>
+                        <span>${data.endPos}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+
+    if (window.spotifyInterval) clearInterval(window.spotifyInterval);
+    
+    let currentMs = data.progressMs;
+    window.spotifyInterval = setInterval(() => {
+        if (currentMs >= data.durationMs) {
+            clearInterval(window.spotifyInterval);
+            return;
+        }
+        currentMs += 1000;
+        const newPercent = Math.min((currentMs / data.durationMs) * 100, 100);
+        const bar = document.getElementById('spotify-progress-bar');
+        const timeLabel = document.getElementById('spotify-current-time');
+        
+        if (bar) bar.style.width = newPercent + '%';
+        if (timeLabel) {
+            const mins = Math.floor(currentMs / 60000);
+            const secs = Math.floor((currentMs % 60000) / 1000);
+            timeLabel.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+        }
+    }, 1000);
 }
 
 async function loadProjects() {
