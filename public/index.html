@@ -15,6 +15,7 @@
                         darkPrimary: '#2d3748',
                         darkText: '#e2e8f0',
                         darkAccent: '#63b3ed',
+                        spotifyGreen: '#1DB954',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -24,20 +25,24 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="styles.css" rel="stylesheet">
+    <style>
+        html { scroll-behavior: smooth; }
+        .section-fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
+        .section-visible { opacity: 1; transform: translateY(0); }
+    </style>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans antialiased">
 
     <header id="main-header" class="fixed top-0 left-0 w-full text-gray-100 py-6 px-4 md:px-8 z-50 transition-all duration-500 ease-in-out bg-transparent shadow-none">
         <nav class="container mx-auto flex justify-between items-center">
             <a href="#" class="text-3xl font-bold text-darkAccent hover:text-blue-400 transition duration-300">Steve.is-a.dev</a>
-<span>This website is still under construction</span>
+            <div id="construction-banner" class="hidden bg-yellow-500/10 border border-yellow-500/50 text-yellow-500 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-widest animate-pulse">
+                Under Construction
+            </div>
             <ul class="hidden md:flex space-x-6">
                 <li><a href="#about" class="hover:text-darkAccent transition duration-300">About</a></li>
                 <li><a href="#skills" class="hover:text-darkAccent transition duration-300">Skills</a></li>
                 <li><a href="#projects" class="hover:text-darkAccent transition duration-300">Projects</a></li>
-                <li><a href="#commissions" class="hover:text-darkAccent transition duration-300">Commissions</a></li>
-                <li><a href="#testimonials" class="hover:text-darkAccent transition duration-300">Testimonials</a></li>
             </ul>
             <button id="mobile-menu-button" class="md:hidden text-gray-100 focus:outline-none">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -45,21 +50,22 @@
                 </svg>
             </button>
         </nav>
-        <div id="mobile-menu" class="hidden md:hidden bg-gray-800 px-4 pt-2 pb-4 space-y-2 mt-4">
+        <div id="mobile-menu" class="hidden bg-gray-800 px-4 pt-2 pb-4 space-y-2 mt-4 shadow-xl">
             <a href="#about" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">About</a>
             <a href="#skills" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Skills</a>
             <a href="#projects" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Projects</a>
-            <a href="#commissions" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Commissions</a>
-            <a href="#testimonials" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Testimonials</a>
         </div>
     </header>
 
     <section id="home" class="min-h-screen flex items-center justify-center text-center py-16 px-4 bg-gradient-to-br from-gray-900 to-darkPrimary">
         <div class="max-w-4xl mx-auto">
-            <img src="./assets/profile.webp" alt="Profile Picture" class="w-48 h-48 rounded-full mx-auto mb-8 object-cover border-4 border-darkAccent shadow-xl">
+            <img src="./assets/profile.webp" alt="Profile Picture" class="w-48 h-48 rounded-full mx-auto mb-8 object-cover border-4 border-darkAccent shadow-xl" onerror="this.src='https://ui-avatars.com/api/?name=Steve&background=63b3ed&color=fff&size=200'">
             <h1 class="text-6xl font-extrabold mb-4 leading-tight text-white">Hi, I'm <span class="text-darkAccent">Steve</span></h1>
             <p class="text-2xl text-gray-300 mb-8 max-w-2xl mx-auto">A passionate web developer building modern, responsive, and user-friendly applications.</p>
-            <a href="#about" class="inline-block bg-darkAccent hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-full text-xl shadow-lg transform hover:scale-105 transition duration-300">Learn More</a>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#about" class="inline-block bg-darkAccent hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-full text-xl shadow-lg transform hover:scale-105 transition duration-300">Learn More</a>
+            </div>
+        </div>
     </section>
 
     <section id="about" class="py-20 px-4 bg-gray-800 text-gray-200">
@@ -83,55 +89,61 @@
         <div class="container mx-auto max-w-6xl">
             <h2 class="text-5xl font-extrabold text-center mb-12 text-white">My Skills</h2>
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 text-center">
-                <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105 border border-transparent hover:border-darkAccent">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-16 h-16 mx-auto mb-4">
                     <p class="text-xl font-semibold text-gray-100">HTML5</p>
                 </a>
-                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105 border border-transparent hover:border-darkAccent">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-16 h-16 mx-auto mb-4">
                     <p class="text-xl font-semibold text-gray-100">CSS3</p>
                 </a>
-                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105 border border-transparent hover:border-darkAccent">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-16 h-16 mx-auto mb-4">
                     <p class="text-xl font-semibold text-gray-100">JavaScript</p>
                 </a>
-                <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
-                    <img src="https://tailwindcss.com/_next/static/media/tailwindcss-mark.d52e9897.svg" alt="Tailwind CSS" class="w-16 h-16 mx-auto mb-4">
+                <a href="https://tailwindcss.com/" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105 border border-transparent hover:border-darkAccent">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" alt="Tailwind CSS" class="w-16 h-16 mx-auto mb-4">
                     <p class="text-xl font-semibold text-gray-100">Tailwind CSS</p>
                 </a>
-                <a href="https://code.visualstudio.com/docs" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                <a href="https://code.visualstudio.com/docs" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105 border border-transparent hover:border-darkAccent">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" class="w-16 h-16 mx-auto mb-4">
                     <p class="text-xl font-semibold text-gray-100">VS Code</p>
                 </a>
-                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
+                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105 border border-transparent hover:border-darkAccent">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="GitHub" class="w-16 h-16 mx-auto mb-4 bg-gray-100 rounded-full p-1">
                     <p class="text-xl font-semibold text-gray-100">GitHub</p>
                 </a>
-                <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105">
-                    <img src="assets/bash.webp" alt="Bash" class="w-16 h-16 mx-auto mb-4">
+                <a href="https://en.wikibooks.org/wiki/Windows_Batch_Scripting" target="_blank" rel="noopener noreferrer" class="block bg-darkPrimary p-6 rounded-lg shadow-md hover:shadow-xl transition duration-300 transform hover:scale-105 border border-transparent hover:border-darkAccent">
+                    <img src="./assets/bash.webp" alt="Bash" class="w-16 h-16 mx-auto mb-4" onerror="this.src='https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg'">
                     <p class="text-xl font-semibold text-gray-100">Windows Batch</p>
                 </a>
             </div>
         </div>
     </section>
 
-    <section id="projects" class="py-20 px-4 bg-gray-900 text-gray-200">
+    <section id="music" class="py-20 px-4 bg-gray-800 text-gray-200 section-fade-in">
+        <div class="container mx-auto max-w-4xl text-center">
+            <h2 class="text-5xl font-extrabold mb-8 text-white">What I'm listening too</h2>
+            <div id="spotify-container" class="bg-gray-900 p-4 rounded-2xl shadow-2xl border border-gray-700 min-h-[352px] flex items-center justify-center">
+                <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-darkAccent"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-20 px-4 bg-gray-900 text-gray-200 section-fade-in">
         <div class="container mx-auto max-w-6xl">
             <h2 class="text-5xl font-extrabold text-center mb-12 text-white">My Projects</h2>
             <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-darkPrimary p-8 rounded-lg shadow-md text-center">
-                    <p class="text-lg text-gray-300">Loading projects...</p>
-                </div>
             </div>
         </div>
     </section>
     
-    <footer>
-        <div class="container mx-auto"><center>
+    <footer class="py-12 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto text-center">
             <p>&copy; <span id="current-year"></span> Steve. All rights reserved.</p>
             <p class="mt-2">Built with 💓 from Steve.</p>
-            <p class=mt-2>Thank you is-a.dev for the subdomain!</p>
-        </center></div>
+            <p class="mt-2 text-gray-500 text-sm">Thank you is-a.dev for the subdomain!</p>
+        </div>
     </footer>
 
     <script type="module" src="script.js"></script>
