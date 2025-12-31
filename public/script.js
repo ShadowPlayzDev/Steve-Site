@@ -1,4 +1,4 @@
-const underConstruction = true;
+const underConstruction = false;
 
 document.addEventListener('DOMContentLoaded', () => {
     const mainHeader = document.getElementById('main-header');
