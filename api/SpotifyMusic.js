@@ -42,7 +42,7 @@ export default async function handler(req, res) {
       },
     });
 
-    const updateDate = Math.floor(Date.now() / 1000);
+    const updateDate = Date.now();
 
     res.setHeader(
       'Cache-Control',
