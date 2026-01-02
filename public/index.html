@@ -25,7 +25,7 @@
         }
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style>
         html { scroll-behavior: smooth; }
         .section-fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s ease-out; }
@@ -33,19 +33,15 @@
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200 font-sans antialiased">
-    
+
 <header id="main-header" class="fixed top-0 left-0 w-full text-gray-100 py-6 px-4 md:px-8 z-50 transition-all duration-500 ease-in-out bg-transparent shadow-none">
     <nav class="container mx-auto flex justify-between items-center relative">
-        <a href="#" class="text-3xl font-bold text-darkAccent hover:text-blue-400 transition duration-300">Steve.is-a.dev</a>
+        <a href="#" class="text-2xl md:text-3xl font-bold text-darkAccent hover:text-blue-400 transition duration-300 flex-shrink-0">Steve.is-a.dev</a>
 
-        <div id="construction-banner" class="absolute left-1/2 transform -translate-x-1/2 bg-yellow-500/10 border border-yellow-500/50 text-yellow-500 px-3 py-1 rounded-full flex items-center gap-2 animate-pulse">
-    
-    <span class="material-icons text-sm">warning</span>
-    
-    <span class="hidden md:block text-xs font-bold uppercase tracking-widest">
-        Under Construction
-    </span>
-</div>
+        <div id="construction-banner" class="flex items-center gap-2 bg-yellow-500/10 border border-yellow-500/50 text-yellow-500 px-3 py-1 rounded-full animate-pulse mx-2">
+            <span class="material-icons text-[18px] md:text-sm">warning</span>
+            <span class="hidden md:block text-xs font-bold uppercase tracking-widest">Under Construction</span>
+        </div>
 
         <ul class="hidden md:flex space-x-6">
             <li><a href="#about" class="hover:text-darkAccent transition duration-300">About</a></li>
@@ -54,7 +50,7 @@
             <li><a href="https://services.steve.is-a.dev" class="hover:text-darkAccent transition duration-300">Services (future)</a></li>
         </ul>
 
-        <button id="mobile-menu-button" class="md:hidden text-gray-100 focus:outline-none">
+        <button id="mobile-menu-button" class="md:hidden text-gray-100 focus:outline-none flex-shrink-0">
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
             </svg>
@@ -65,11 +61,11 @@
         <a href="#about" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">About</a>
         <a href="#skills" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Skills</a>
         <a href="#projects" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Projects</a>
-        <a href="https://services.steve.is-a.dev" class="hover:text-darkAccent transition duration-300">Services (future)</a>
+        <a href="https://services.steve.is-a.dev" class="block text-gray-100 hover:text-darkAccent transition duration-300 py-2">Services (future)</a>
     </div>
 </header>
 
-
+<main>
     <section id="home" class="min-h-screen flex items-center justify-center text-center py-16 px-4 bg-gradient-to-br from-gray-900 to-darkPrimary">
         <div class="max-w-4xl mx-auto">
             <img src="./assets/profile.webp" alt="Profile Picture" class="w-48 h-48 rounded-full mx-auto mb-8 object-cover border-4 border-darkAccent shadow-xl" onerror="this.src='https://ui-avatars.com/api/?name=Steve&background=63b3ed&color=fff&size=200'">
@@ -85,15 +81,9 @@
         <div class="container mx-auto max-w-5xl">
             <h2 class="text-5xl font-extrabold text-center mb-12 text-white">About Me</h2>
             <div class="text-lg leading-relaxed">
-                <p class="mb-6">
-                    Hello! My name is Steve, and I specialize in creating robust and dynamic web experiences. With a strong foundation in <span class="font-bold text-darkAccent">HTML</span>, <span class="font-bold text-darkAccent">CSS</span>, and <span class="font-bold text-darkAccent">JavaScript</span>, I love bringing ideas to life on the web.
-                </p>
-                <p class="mb-6">
-                    I'm particularly enthusiastic about using modern frameworks like <span class="font-bold text-darkAccent">Tailwind CSS</span> to build beautiful and highly customizable interfaces efficiently. My goal is always to deliver clean, efficient, and maintainable code that provides an excellent user experience.
-                </p>
-                <p>
-                    When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying the great outdoors. I'm always eager to learn and take on new challenges.
-                </p>
+                <p class="mb-6">Hello! My name is Steve, and I specialize in creating robust and dynamic web experiences. With a strong foundation in <span class="font-bold text-darkAccent">HTML</span>, <span class="font-bold text-darkAccent">CSS</span>, and <span class="font-bold text-darkAccent">JavaScript</span>, I love bringing ideas to life on the web.</p>
+                <p class="mb-6">I'm particularly enthusiastic about using modern frameworks like <span class="font-bold text-darkAccent">Tailwind CSS</span> to build beautiful and highly customizable interfaces efficiently. My goal is always to deliver clean, efficient, and maintainable code that provides an excellent user experience.</p>
+                <p>When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, or enjoying the great outdoors. I'm always eager to learn and take on new challenges.</p>
             </div>
         </div>
     </section>
@@ -137,31 +127,31 @@
     <section id="music" class="py-20 px-4 bg-gray-800 text-gray-200">
         <div class="container mx-auto max-w-4xl text-center">
             <h2 class="text-5xl font-extrabold mb-8 text-white">What I'm listening to</h2>
-        <div id="spotify-container" class="bg-gray-900 p-6 rounded-2xl shadow-2xl border border-gray-700 min-h-[200px] flex items-center justify-center transition-all duration-500">
-            <div class="flex flex-col items-center">
-                <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-darkAccent mb-4"></div>
-                <p class="text-gray-500 animate-pulse">Connecting to Spotify...</p>
-            </div>
-        </div>
-    </div>
-</section>
-    
-    <section id="projects" class="py-20 px-4 bg-gray-900 text-gray-200">
-        <div class="container mx-auto max-w-6xl">
-            <h2 class="text-5xl font-extrabold text-center mb-12 text-white">My Projects</h2>
-            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div id="spotify-container" class="bg-gray-900 p-6 rounded-2xl shadow-2xl border border-gray-700 min-h-[200px] flex items-center justify-center transition-all duration-500">
+                <div class="flex flex-col items-center">
+                    <div class="animate-spin rounded-full h-10 w-10 border-t-2 border-b-2 border-darkAccent mb-4"></div>
+                    <p class="text-gray-500 animate-pulse">Connecting to Spotify...</p>
+                </div>
             </div>
         </div>
     </section>
-    
-    <footer class="py-12 bg-gray-900 border-t border-gray-800">
-        <div class="container mx-auto text-center">
-            <p>&copy; <span id="current-year"></span> Steve. All rights reserved.</p>
-            <p class="mt-2">Built with 💓 from Steve.</p>
-            <p class="mt-2 text-gray-500 text-sm">Thank you is-a.dev for the subdomain!</p>
-        </div>
-    </footer>
 
-    <script type="module" src="script.js"></script>
+    <section id="projects" class="py-20 px-4 bg-gray-900 text-gray-200">
+        <div class="container mx-auto max-w-6xl">
+            <h2 class="text-5xl font-extrabold text-center mb-12 text-white">My Projects</h2>
+            <div id="projects-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+        </div>
+    </section>
+</main>
+
+<footer class="py-12 bg-gray-900 border-t border-gray-800">
+    <div class="container mx-auto text-center">
+        <p>&copy; <span id="current-year"></span> Steve. All rights reserved.</p>
+        <p class="mt-2">Built with 💓 from Steve.</p>
+        <p class="mt-2 text-gray-500 text-sm">Thank you is-a.dev for the subdomain!</p>
+    </div>
+</footer>
+
+<script type="module" src="script.js"></script>
 </body>
 </html>
