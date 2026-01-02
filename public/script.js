@@ -1,4 +1,5 @@
-const underConstruction = false;
+const underConstruction = true;
+const underConstDesc = "We're performing maintenance to update Spotify integration and improve frontend performance.";
 
 document.addEventListener('DOMContentLoaded', () => {
     const mainHeader = document.getElementById('main-header');
@@ -6,6 +7,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (underConstruction && constructionBanner) {
         constructionBanner.classList.remove('hidden');
+        if (underConstDesc) {
+            constructionBanner.title = underConstDesc;
+            constructionBanner.addEventListener('click', () => alert(underConstDesc));
+        }
     }
 
     if (mainHeader) {
@@ -25,60 +30,82 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
-
     if (mobileMenuButton && mobileMenu) {
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
+        mobileMenuButton.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
     }
 
     const currentYearSpan = document.getElementById('current-year');
-    if (currentYearSpan) {
-        currentYearSpan.textContent = new Date().getFullYear();
+    if (currentYearSpan) currentYearSpan.textContent = new Date().getFullYear();
+
+    async function loadSpotify() {
+        const container = document.getElementById('spotify-container');
+        if (!container) return;
+        try {
+            const response = await fetch('/api/SpotifyMusic', { method: 'POST' });
+            if (!response.ok) throw new Error('Offline');
+            const data = await response.json();
+            renderSpotifyCard(data);
+        } catch (e) {
+            console.error("Spotify Load Error:", e);
+            container.innerHTML = `<p class="text-gray-400">Not playing anything right now.</p>`;
+        }
     }
 
-async function loadSpotify() {
-    const container = document.getElementById('spotify-container');
-    if (!container) return;
-
-    try {
-        const response = await fetch('/api/SpotifyMusic', { method: 'POST' });
-        if (!response.ok) throw new Error('Offline');
-        
-        const data = await response.json();
-        renderSpotifyCard(data); 
-    } catch (error) {
-        console.error("Spotify Load Error:", error);
-        container.innerHTML = `<p class="text-gray-400">Not playing anything right now.</p>`;
-    }
-}
-    
     loadSpotify();
-    setInterval(loadSpotify, 30000); 
+    setInterval(loadSpotify, 30000);
     loadProjects();
 });
+
+let spotifyRAF = null;
+
+function getLiveProgress(data) {
+    if (!data.isPlaying) return data.progressMs;
+    return Math.min(data.progressMs + (Date.now() - data.timestamp), data.durationMs);
+}
+
+function formatTime(ms) {
+    const m = Math.floor(ms / 60000);
+    const s = Math.floor((ms % 60000) / 1000);
+    return `${m}:${s < 10 ? '0' : ''}${s}`;
+}
+
+function startProgressLoop(data) {
+    cancelAnimationFrame(spotifyRAF);
+    function tick() {
+        const currentMs = getLiveProgress(data);
+        const percent = (currentMs / data.durationMs) * 100;
+        const bar = document.getElementById('spotify-progress-bar');
+        const timeLabel = document.getElementById('spotify-current-time');
+        if (bar) bar.style.width = percent + '%';
+        if (timeLabel) timeLabel.textContent = formatTime(currentMs);
+        if (data.isPlaying && currentMs < data.durationMs) spotifyRAF = requestAnimationFrame(tick);
+    }
+    tick();
+}
 
 function renderSpotifyCard(data) {
     const container = document.getElementById('spotify-container');
     if (!container) return;
 
     if (!data.isPlaying) {
+        cancelAnimationFrame(spotifyRAF);
         container.innerHTML = `<p class="text-xl font-semibold text-gray-400">Not playing anything right now</p>`;
-        if (window.spotifyInterval) clearInterval(window.spotifyInterval);
         return;
     }
 
-    const progressPercent = (data.progressMs / data.durationMs) * 100;
+    const currentMs = getLiveProgress(data);
+    const percent = (currentMs / data.durationMs) * 100;
 
     container.innerHTML = `
         <div class="w-full max-w-2xl mx-auto flex flex-col md:flex-row items-center gap-8 p-2 text-left">
             <div class="relative shrink-0">
                 <img src="${data.cover}" alt="Album Art" class="w-32 h-32 md:w-40 md:h-40 rounded-lg shadow-2xl border border-gray-700 object-cover">
                 <div class="absolute -top-2 -right-2 bg-[#1DB954] p-1.5 rounded-full shadow-lg border-2 border-gray-900 text-white">
-                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/>
+                    </svg>
                 </div>
             </div>
-            
             <div class="flex-1 w-full overflow-hidden text-center md:text-left">
                 <div class="mb-4">
                     <a href="${data.url}" target="_blank" rel="noopener noreferrer" class="text-2xl font-bold text-white hover:text-[#1DB954] transition-colors truncate block">
@@ -86,40 +113,19 @@ function renderSpotifyCard(data) {
                     </a>
                     <p class="text-darkAccent font-medium text-lg truncate">${data.artist}</p>
                 </div>
-
                 <div class="space-y-2">
                     <div class="w-full bg-gray-700 rounded-full h-2 overflow-hidden">
-                        <div id="spotify-progress-bar" class="bg-[#1DB954] h-full transition-all duration-1000 ease-linear" style="width: ${progressPercent}%"></div>
+                        <div id="spotify-progress-bar" class="bg-[#1DB954] h-full transition-all duration-1000 ease-linear" style="width: ${percent}%"></div>
                     </div>
                     <div class="flex justify-between text-xs font-mono text-gray-500">
-                        <span id="spotify-current-time">${data.position}</span>
-                        <span>${data.endPos}</span>
+                        <span id="spotify-current-time">${formatTime(currentMs)}</span>
+                        <span>${formatTime(data.durationMs)}</span>
                     </div>
                 </div>
             </div>
         </div>
     `;
-
-    if (window.spotifyInterval) clearInterval(window.spotifyInterval);
-    
-    let currentMs = data.progressMs;
-    window.spotifyInterval = setInterval(() => {
-        if (currentMs >= data.durationMs) {
-            clearInterval(window.spotifyInterval);
-            return;
-        }
-        currentMs += 1000;
-        const newPercent = Math.min((currentMs / data.durationMs) * 100, 100);
-        const bar = document.getElementById('spotify-progress-bar');
-        const timeLabel = document.getElementById('spotify-current-time');
-        
-        if (bar) bar.style.width = newPercent + '%';
-        if (timeLabel) {
-            const mins = Math.floor(currentMs / 60000);
-            const secs = Math.floor((currentMs % 60000) / 1000);
-            timeLabel.textContent = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
-        }
-    }, 1000);
+    startProgressLoop(data);
 }
 
 async function loadProjects() {
