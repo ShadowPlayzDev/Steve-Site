@@ -4,7 +4,7 @@ const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN
 const TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
 const NOW_PLAYING_ENDPOINT = 'https://api.spotify.com/v1/me/player/currently-playing'
 const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64')
-const hideSpotify = true;
+const hideSpotify = false;
 
 async function getAccessToken() {
   const res = await fetch(TOKEN_ENDPOINT, {
