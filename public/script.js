@@ -1,5 +1,5 @@
 const underConstruction = true;
-const underConstDesc = "We're performing maintenance to update Spotify integration and improve frontend performance.";
+const underConstDesc = "I'm currently working on getting my services subdomain from is-a.dev. And that domain will be for future use when I make services public, and show my private services.";
 
 document.addEventListener('DOMContentLoaded', () => {
     const mainHeader = document.getElementById('main-header');
