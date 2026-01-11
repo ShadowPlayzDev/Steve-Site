@@ -21,14 +21,14 @@ jobs:
       - name: Install & Build
         run: |
           npm install
-          # Dynamically set the base path for GitHub Pages subfolder
           npm run build -- --base=/pulls/${{ github.event.repository.name }}/${{ github.event.issue.number }}/
 
       - name: Generate AI Summary
         id: ai_summary
-        uses: github/github-models-action@v1
+        uses: behrouz-rad/ai-pr-summarizer@v1
         with:
-          prompt: "Summarize the changes in this PR diff concisely for a technical reviewer."
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          api-key: ${{ secrets.OPENAI_API_KEY }}
         continue-on-error: true 
 
       - name: Push to Pulls Repo
@@ -48,10 +48,7 @@ jobs:
         with:
           message: |
             ## 🚀 Preview Deployed!
-            
             **URL:** [View Preview](https://shadowplayzdev.github.io/pulls/${{ github.event.repository.name }}/${{ github.event.issue.number }}/)
             
             **AI Summary:**
-            > The AI is processing the pull request...
-            
-            _Note: This preview is temporary and for review purposes only._
+            > ${{ steps.ai_summary.outputs.summary || 'Preview is live! AI summary skipped.' }}
