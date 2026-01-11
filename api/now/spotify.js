@@ -29,9 +29,9 @@ export default async function handler(req, res) {
   }
     
     res.setHeader('Cache-Control', 'public, s-maxage=5, stale-while-revalidate=5')
-    if (spotifyRes.status === 204 || spotifyRes.status >= 400) return res.status(200).json({ updateDate, isPlaying: false })
+    if (spotifyRes.status === 204 || spotifyRes.status >= 400) return res.status(200).json({ timestamp, isPlaying: false })
     const data = await spotifyRes.json()
-    if (!data?.item) return res.status(200).json({ updateDate, isPlaying: false })
+    if (!data?.item) return res.status(200).json({ timestamp, isPlaying: false })
     return res.status(200).json({
       timestamp,
       isPlaying: data.is_playing,
