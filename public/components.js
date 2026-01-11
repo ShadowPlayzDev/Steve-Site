@@ -93,7 +93,7 @@ class SpotifyNow extends HTMLElement {
     }
     async update() {
         try {
-            const res = await fetch('/api/now/spotify');
+            const res = await fetch('/api/now/spotify', { method: 'POST' });
             const data = await res.json();
             this.render(data);
         } catch (e) {
