@@ -62,14 +62,13 @@ class SpotifyNow extends HTMLElement {
     
     async update() {
         try {
-            const res = await fetch('/api/SpotifyMusic', { method: 'POST' });
+            const res = await fetch('/api/now/spotify', { method: 'POST' });
             const data = await res.json();
             this.render(data);
         } catch (e) { this.style.display = 'none'; }
     }
 
     render(data) {
-        // Hides the element entirely if not playing or if the API returns a hidden state
         if (!data || !data.isPlaying || data.hidden) {
             this.innerHTML = ''; 
             this.style.display = 'none';
