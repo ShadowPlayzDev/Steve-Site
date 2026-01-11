@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const container = document.getElementById('spotify-container');
         if (!container) return;
         try {
-            const response = await fetch('/api/SpotifyMusic', { method: 'POST' });
+            const response = await fetch('/api/live/spotify', { method: 'POST' });
             if (!response.ok) throw new Error('Offline');
             const data = await response.json();
             renderSpotifyCard(data);
