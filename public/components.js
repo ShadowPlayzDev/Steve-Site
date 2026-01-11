@@ -1,4 +1,3 @@
-// Helper to inject HTML into a component
 const setComponentHTML = (el, html) => el.innerHTML = html;
 
 class SiteHeader extends HTMLElement {
