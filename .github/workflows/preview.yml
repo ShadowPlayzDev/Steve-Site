@@ -1,0 +1,57 @@
+name: PR Preview Deploy
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  deploy-preview:
+    if: github.event.issue.pull_request && contains(github.event.comment.body, '$Preview$')
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get PR Branch
+        uses: xt0rted/pull-request-comment-branch@v2
+        id: comment-branch
+
+      - name: Checkout PR Branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ steps.comment-branch.outputs.head_ref }}
+          fetch-depth: 0
+
+      - name: Install & Build
+        run: |
+          npm install
+          # Dynamically set the base path for GitHub Pages subfolder
+          npm run build -- --base=/pulls/${{ github.event.repository.name }}/${{ github.event.issue.number }}/
+
+      - name: Generate AI Summary
+        id: ai_summary
+        uses: github/github-models-action@v1
+        with:
+          prompt: "Summarize the changes in this PR diff concisely for a technical reviewer."
+        continue-on-error: true 
+
+      - name: Push to Pulls Repo
+        uses: cpina/github-action-push-to-another-repository@main
+        env:
+          API_TOKEN_GITHUB: ${{ secrets.PREVIEW_DEPLOY_TOKEN }}
+        with:
+          source-directory: 'dist'
+          destination-github-username: 'shadowplayzdev'
+          destination-repository-name: 'pulls'
+          target-directory: '${{ github.event.repository.name }}/${{ github.event.issue.number }}'
+          user-email: actions@github.com
+          target-branch: main
+
+      - name: Post Success Comment
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ## 🚀 Preview Deployed!
+            
+            **URL:** [View Preview](https://shadowplayzdev.github.io/pulls/${{ github.event.repository.name }}/${{ github.event.issue.number }}/)
+            
+            **AI Summary:**
+            > The AI is processing the pull request...
+            
+            _Note: This preview is temporary and for review purposes only._
