@@ -1,5 +1,5 @@
-const underConstruction = true;
-const underConstDesc = "I'm currently working on getting my services subdomain from is-a.dev. And that domain will be for future use when I make services public, and show my private services.";
+const underConstruction = false;
+const underConstDesc = "";
 
 document.addEventListener('DOMContentLoaded', () => {
     const mainHeader = document.getElementById('main-header');
