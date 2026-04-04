@@ -1,1 +1,71 @@
-<h1>404 - Not Found</h1><hr><p>vercel/2</p>
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | Page Not Found</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBackground: '#1a202c',
+                        darkPrimary: '#2d3748',
+                        darkText: '#e2e8f0',
+                        darkAccent: '#63b3ed',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        @keyframes pulse-slow {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.05); }
+        }
+        .animate-glow {
+            animation: pulse-slow 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200 font-sans antialiased min-h-screen flex flex-col">
+
+    <header class="fixed top-0 left-0 w-full text-gray-100 py-6 px-4 md:px-8 z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
+        <nav class="container mx-auto flex justify-between items-center">
+            <a href="https://steve.is-a.dev" class="text-2xl font-bold text-darkAccent">Steve.is-a.dev</a>
+        </nav>
+    </header>
+
+    <main class="flex-grow flex items-center justify-center px-4">
+        <div class="text-center">
+            <h1 class="text-9xl font-extrabold text-white tracking-tighter mb-4 animate-glow">
+                4<span class="text-darkAccent">0</span>4
+            </h1>
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">Someone tripped over the ethernet cable</h2>
+            <p class="text-gray-400 text-lg mb-10 max-w-md mx-auto leading-relaxed">
+                The page you're looking for doesn't exist—or it’s currently hiding at 127.0.0.1!
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="/" class="bg-darkAccent hover:bg-blue-400 text-gray-900 font-bold py-3 px-8 rounded-xl transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-darkAccent/20">
+                    Back to Dashboard
+                </a>
+                <a href="https://steve.is-a.dev" class="bg-darkPrimary hover:bg-gray-700 text-white font-semibold py-3 px-8 rounded-xl border border-gray-700 transition-all duration-300">
+                    Visit Homepage
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="py-12 bg-gray-900 border-t border-gray-800 text-center text-gray-500">
+        <p>&copy; 2026 Steve. Built with 💓 and Tailwind.</p>
+    </footer>
+
+</body>
+</html>
