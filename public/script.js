@@ -1,17 +1,15 @@
 const underConstruction = false;
 const underConstDesc = "";
 
-document.addEventListener('DOMContentLoaded', () => {
-    const mainHeader = document.getElementById('main-header');
-    const constructionBanner = document.getElementById('construction-banner');
-
-    if (underConstruction && constructionBanner) {
-        constructionBanner.classList.remove('hidden');
-        if (underConstDesc) {
-            constructionBanner.title = underConstDesc;
-            constructionBanner.addEventListener('click', () => alert(underConstDesc));
-        }
+if (underConstruction && constructionBanner) {
+    constructionBanner.classList.remove('hidden');
+    if (underConstDesc) {
+        constructionBanner.title = underConstDesc;
+        constructionBanner.addEventListener('click', () => alert(underConstDesc));
     }
+} else if (constructionBanner) {
+    constructionBanner.classList.add('hidden');
+}
 
     if (mainHeader) {
         const updateHeaderStyle = () => {
